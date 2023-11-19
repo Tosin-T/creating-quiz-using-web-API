@@ -1,36 +1,78 @@
-// var questions =["what is my name?{}","how old im I?", " is chocolate nice?"]
-// var qtitle= document.getElementById("question-title")
-// var q= qtitle.textContent=questions[0]
-// var buttonchoices=document.getElementsByClassName("choices")
-// buttonchoices.addEventListener("click", nextq)
-// function nextq(){
-//     for(i=0;i<questions.length;i++){
+var qtitle= document.getElementById("question-title")
+var buttonchoices=document.getElementById("choices")
+var correctAnswers= 0;
+var questionPosition=0;
+var currentQuestion=''
 
-//     }
-// }
 var quizquestion=[{
-    question: "what is my name?",
+    question: "which of these is used to notate 'or' ?",
     answers: {
-        a: "tosin",
-        b: "tos",
-        c: "nisot",
-        d: "brown",
+        a: ["||",true],
+        b: ["<",false],
+        c: ["!",false],
+        d: ["&",false],
     }
 },{
     question: "what is my town?",
     answers: {
-        a: "london",
-        b: "LA",
-        c: "kent",
-        d: "dartford",
-}
+        a: ["c",true],
+        b: ["f",false],
+        c: ["f",false],
+        d: ["f",false],
+    }
 },{
     question: "what is my car?",
     answers: {
-        a: "bmw",
-        b: "audi",
-        c: "merc",
-        d: "ford",
-}
+        a: ["t",true],
+        b: ["f",false],
+        c: ["f",false],
+        d: ["f",false],
+    }
 }]
 console.log(quizquestion)
+// var total questions:
+// correct answers count var ''
+
+
+function quizchecker(){
+    currentQuestion =quizquestion[questionPosition]
+    qtitle.append(currentQuestion.question)
+
+    for(var key in currentQuestion.answers){
+        let answer= currentQuestion.answers[key]
+        let button = document.createElement("button")
+    button.textContent=answer[0]
+    button.setAttribute('data-key',key)
+    buttonchoices.appendChild(button)
+        console.log(answer)
+    }
+}
+
+
+
+quizchecker()
+
+buttonchoices.addEventListener("click",function(event){
+    let answer=currentQuestion.answers[event.target.dataset.key]
+    if (answer[1]==true){
+        correctAnswers++;
+        questionPosition++;
+        
+        if( questionPosition>=quizquestion.length){
+            console.log("you finished!")
+        }else{
+        qtitle.innerHTML=''
+        buttonchoices.innerHTML=''
+            quizchecker()}
+        
+    }else{ 
+        questionPosition++;
+        console.log("you suck")}
+        if( questionPosition>=quizquestion.length){
+            console.log("you finished!")
+        }else{
+        qtitle.innerHTML=''
+        buttonchoices.innerHTML=''
+            quizchecker()}
+    })
+    
