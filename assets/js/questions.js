@@ -66,7 +66,7 @@ buttonchoices.addEventListener("click",function(event){
             quizchecker()}
         
     }else{ 
-        
+        timeleft-=10
         questionPosition++;
         console.log("you suck")}
         if( questionPosition>=quizquestion.length){
@@ -75,7 +75,7 @@ buttonchoices.addEventListener("click",function(event){
         qtitle.innerHTML=''
         buttonchoices.innerHTML=''
             quizchecker()}
-            timeleft-=10
+            
     })
     
 // // declared variables
