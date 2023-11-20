@@ -59,7 +59,7 @@ buttonchoices.addEventListener("click",function(event){
         questionPosition++;
         
         if( questionPosition>=quizquestion.length){
-            console.log("you finished!")
+            window.location.replace("highscores.html")
         }else{
         qtitle.innerHTML=''
         buttonchoices.innerHTML=''
@@ -70,7 +70,7 @@ buttonchoices.addEventListener("click",function(event){
         questionPosition++;
         console.log("you suck")}
         if( questionPosition>=quizquestion.length){
-            console.log("you finished!")
+            window.location.replace("highscores.html")
         }else{
         qtitle.innerHTML=''
         buttonchoices.innerHTML=''
@@ -94,8 +94,10 @@ function initiatetimer(){timerFunction= setInterval(function(){
   timerdisplay.innerText=timeleft
 
 
-  if(timeleft==0){
+  if(timeleft<=0){
     clearInterval(timerFunction)
+    window.location.replace("highscores.html")
+    
 
   }
 },1000)}
