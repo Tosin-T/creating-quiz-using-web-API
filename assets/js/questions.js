@@ -3,6 +3,7 @@ var buttonchoices=document.getElementById("choices")
 var correctAnswers= 0;
 var questionPosition=0;
 var currentQuestion=''
+var retriveHighscores=JSON.parse(localStorage.getItem("playerHighscores"))||[]
 
 var quizquestion=[{
     question: "which of these is used to notate 'or' ?",
@@ -13,20 +14,20 @@ var quizquestion=[{
         d: ["&",false],
     }
 },{
-    question: "what is my town?",
+    question: "The condition in an IF/Else statement is enclosed within ____",
     answers: {
-        a: ["c",true],
-        b: ["f",false],
-        c: ["f",false],
-        d: ["f",false],
+        a: ["Parenthases",true],
+        b: ["quotes",false],
+        c: ["square brackets",false],
+        d: ["curly brackets",false],
     }
 },{
-    question: "what is my car?",
+    question: "Arrays in JavaScript can be used to store ",
     answers: {
-        a: ["t",true],
-        b: ["f",false],
-        c: ["f",false],
-        d: ["f",false],
+        a: ["all of the answers",true],
+        b: ["other arrays",false],
+        c: ["numbers and string",false],
+        d: ["booleans",false],
     }
 }]
 console.log(quizquestion)
@@ -59,6 +60,8 @@ buttonchoices.addEventListener("click",function(event){
         questionPosition++;
         
         if( questionPosition>=quizquestion.length){
+            retriveHighscores.push(correctAnswers)
+            localStorage.setItem("playerHighscores",JSON.stringify(retriveHighscores))
             window.location.replace("highscores.html")
         }else{
         qtitle.innerHTML=''
@@ -68,7 +71,7 @@ buttonchoices.addEventListener("click",function(event){
     }else{ 
         timeleft-=10
         questionPosition++;
-        console.log("you suck")}
+        }
         if( questionPosition>=quizquestion.length){
             window.location.replace("highscores.html")
         }else{
@@ -77,6 +80,7 @@ buttonchoices.addEventListener("click",function(event){
             quizchecker()}
             
     })
+    
     
 // // declared variables
 var startscreen= document.getElementById("start-screen")
@@ -96,6 +100,9 @@ function initiatetimer(){timerFunction= setInterval(function(){
 
   if(timeleft<=0){
     clearInterval(timerFunction)
+    retriveHighscores.push(correctAnswers)
+    localStorage.setItem("playerHighscores",JSON.stringify(retriveHighscores))
+    alert("Times up!")
     window.location.replace("highscores.html")
     
 
