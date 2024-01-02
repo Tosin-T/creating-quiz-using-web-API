@@ -31,10 +31,9 @@ function addDetails(event){
     return
   
 
-// // for(i=0;i<retriveNames.length;i++){
-// //     console.log(retriveNames[i])
-// }
+
 }
+
 function clearResults(){
     retriveNames.splice(start=0, deleteCount=retriveNames.length)
     retriveHighscores.splice(start=0, deleteCount=retriveHighscores.length)
